@@ -7,7 +7,7 @@
     </p>
     <Carousel
       class="feedbacks-carousel"
-      :perPage="1"
+      :per-page="1"
       :autoplay="true"
       :loop="true"
     >
@@ -21,13 +21,16 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "../../node_modules/vue-carousel/src/index.js";
+import { Carousel, Slide } from '../../node_modules/vue-carousel/src/index.js';
 
 export default {
+  components: { Carousel, Slide },
   props: {
-    feedbacks: Array
-  },
-  components: { Carousel, Slide }
+    feedbacks: {
+      type: Array,
+      default: () => []
+    }
+  }
 };
 </script>
 
@@ -76,10 +79,10 @@ p {
 }
 
 .quote::before {
-  content: "\201C";
+  content: '\201C';
 }
 
 .quote::after {
-  content: "\201D";
+  content: '\201D';
 }
 </style>

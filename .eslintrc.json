@@ -1,0 +1,20 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2019
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/recommended",
+    "plugin:prettier/recommended",
+    "prettier/vue"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "vue/no-v-html": ["off"]
+  }
+}

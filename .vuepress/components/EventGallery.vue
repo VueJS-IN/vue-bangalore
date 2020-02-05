@@ -1,5 +1,11 @@
 <template>
-  <Carousel class="gallery" :perPage="1" :autoplay="true" :loop="true" :navigationEnabled="true">
+  <Carousel
+    class="gallery"
+    :per-page="1"
+    :autoplay="true"
+    :loop="true"
+    :navigation-enabled="true"
+  >
     <Slide v-for="photo in photos" :key="photo" class="slide">
       <img class="img" :src="photo" />
     </Slide>
@@ -7,12 +13,17 @@
 </template>
 
 <script>
-import { Carousel, Slide } from '../../node_modules/vue-carousel/src/index.js'
+import { Carousel, Slide } from '../../node_modules/vue-carousel/src/index.js';
 
 export default {
-  props: ['photos'],
-  components: { Carousel, Slide }
-}
+  components: { Carousel, Slide },
+  props: {
+    photos: {
+      type: Array,
+      default: () => []
+    }
+  }
+};
 </script>
 
 <style scoped>

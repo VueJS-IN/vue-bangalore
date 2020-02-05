@@ -1,17 +1,24 @@
 <template>
   <section class="talk">
     <h3 class="title"><u>Show &amp; Tell</u>: {{ title }}</h3>
-    <div class="recording" v-if="recording">
-      <iframe :src="recording" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+    <div v-if="recording" class="recording">
+      <iframe
+        :src="recording"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
     </div>
-    <div v-if="description" v-html="description" class="description"></div>
+    <div v-if="description" class="description" v-html="description"></div>
     <EventSpeaker :speaker="speaker" :bio="bio" />
     <ItemRow v-if="deck">
-      <Icon name="deck" slot="icon" />
+      <Icon slot="icon" name="deck" />
       <a :href="deck" target="_blank">Speaker Deck</a>
     </ItemRow>
     <ItemRow v-if="website">
-      <Icon name="website" slot="icon" />
+      <Icon slot="icon" name="website" />
       <a :href="website" target="_blank">{{ website }}</a>
     </ItemRow>
   </section>
@@ -19,13 +26,42 @@
 
 <script>
 export default {
-  props: ['title', 'speaker', 'website', 'bio', 'description', 'recording', 'deck'],
   filters: {
-    filename (value) {
-      return value.split('/').pop()
+    filename(value) {
+      return value.split('/').pop();
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    speaker: {
+      type: String,
+      required: true
+    },
+    website: {
+      type: String,
+      default: ''
+    },
+    bio: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    recording: {
+      type: String,
+      default: ''
+    },
+    deck: {
+      type: String,
+      default: ''
     }
   }
-}
+};
 </script>
 
 <style scoped>

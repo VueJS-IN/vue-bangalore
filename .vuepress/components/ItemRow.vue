@@ -17,7 +17,6 @@
   width: 1.5rem;
   border-radius: 100%;
   display: inline-block;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 </style>
-

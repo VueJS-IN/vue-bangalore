@@ -2,16 +2,23 @@
   <section>
     <h3 v-if="title" class="title">{{ title }}</h3>
     <div v-if="recording" class="recording">
-      <iframe :src="recording" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+      <iframe
+        :src="recording"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
     </div>
     <div v-if="description" v-html="description"></div>
     <EventSpeaker v-if="speaker" :speaker="speaker" :bio="bio" />
     <ItemRow v-if="deck">
-      <Icon name="deck" slot="icon" />
+      <Icon slot="icon" name="deck" />
       <a :href="deck" target="_blank">Speaker Deck</a>
     </ItemRow>
     <ItemRow v-if="issue">
-      <Icon name="github" slot="icon" />
+      <Icon slot="icon" name="github" />
       <a :href="issue" target="_blank">{{ issue | filename }} </a>
     </ItemRow>
   </section>
@@ -19,13 +26,42 @@
 
 <script>
 export default {
-  props: ['title', 'description', 'speaker', 'bio', 'deck', 'issue', 'recording'],
   filters: {
-    filename (value) {
-      return value.split('/').pop()
+    filename(value) {
+      return value.split('/').pop();
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    speaker: {
+      type: String,
+      required: true
+    },
+    bio: {
+      type: String,
+      default: ''
+    },
+    deck: {
+      type: String,
+      default: ''
+    },
+    issue: {
+      type: String,
+      default: ''
+    },
+    recording: {
+      type: String,
+      default: ''
     }
   }
-}
+};
 </script>
 
 <style scoped>

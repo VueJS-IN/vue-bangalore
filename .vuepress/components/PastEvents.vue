@@ -1,33 +1,41 @@
 <script>
-import events from '@dynamic/events'
-import EventSummary from './EventSummary.vue'
+import events from '@dynamic/events';
+import EventSummary from './EventSummary.vue';
 
 export default {
+  components: { EventSummary },
   props: {
-    limit: Number
+    limit: {
+      type: Number,
+      required: true
+    }
   },
   computed: {
     events() {
-      const now = Date.now()
+      const now = Date.now();
 
       const past = events.filter(
         event => !event.date || new Date(event.date).getTime() < now
-      )
+      );
 
       if (typeof this.limit === 'number') {
-        return past.slice(0, this.limit)
+        return past.slice(0, this.limit);
       }
 
-      return past
+      return past;
     }
-  },
-  components: { EventSummary }
-}
+  }
+};
 </script>
 
 <template>
   <div class="events">
-    <EventSummary class="event" v-for="event in events" :key="event.id" v-bind="event" />
+    <EventSummary
+      v-for="event in events"
+      :key="event.id"
+      class="event"
+      v-bind="event"
+    />
   </div>
 </template>
 

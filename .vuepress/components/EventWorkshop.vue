@@ -2,17 +2,23 @@
   <section class="talk">
     <h3 class="title">{{ title }}</h3>
     <div v-if="description" v-html="description"></div>
-    <EventSpeaker v-for="speaker in allSpeakers" :speaker="speaker" />
+    <EventSpeaker
+      v-for="(entry, index) in allSpeakers"
+      :key="index"
+      :speaker="entry"
+    />
     <ItemRow v-if="deck">
-      <Icon name="deck" slot="icon" />
+      <Icon slot="icon" name="deck" />
       <a :href="deck" target="_blank">Speaker Deck</a>
     </ItemRow>
     <ItemRow v-if="source">
-      <Icon name="github" slot="icon" />
-      <a :href="source" target="_blank">{{ source.replace(/https?:\/\/github.com\//, '') }}</a>
+      <Icon slot="icon" name="github" />
+      <a :href="source" target="_blank">{{
+        source.replace(/https?:\/\/github.com\//, '')
+      }}</a>
     </ItemRow>
     <ItemRow v-if="issue">
-      <Icon name="request" slot="icon" />
+      <Icon slot="icon" name="request" />
       <a :href="issue" target="_blank">{{ issue | title }} </a>
     </ItemRow>
   </section>
@@ -20,10 +26,39 @@
 
 <script>
 export default {
-  props: ['title', 'speaker', 'speakers', 'description', 'deck', 'issue', 'source'],
   filters: {
-    filename (value) {
-      return value.split('/').pop()
+    filename(value) {
+      return value.split('/').pop();
+    }
+  },
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    speaker: {
+      type: String,
+      default: null
+    },
+    speakers: {
+      type: Array,
+      required: true
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    deck: {
+      type: String,
+      default: ''
+    },
+    issue: {
+      type: String,
+      default: ''
+    },
+    source: {
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -31,7 +66,7 @@ export default {
       return this.speakers ? this.speakers : [this.speaker];
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -39,10 +74,9 @@ export default {
   position: relative;
 }
 .title::before {
-  content: "Workshop:";
+  content: 'Workshop:';
   padding-right: 10px;
   display: inline-block;
   text-decoration: underline;
 }
 </style>
-

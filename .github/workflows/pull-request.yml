@@ -1,0 +1,52 @@
+name: Pull request checks
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  install_dependencies:
+    name: Install and cache dependencies
+    runs-on: ubuntu-latest
+    container: 'node:12.14.1-alpine'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: /usr/local/share/.cache/yarn/v6
+          key: ${{ job.container.image }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn
+  eslint_validate:
+    name: Validate ESLint rules
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    container: 'node:12.14.1-alpine'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: /usr/local/share/.cache/yarn/v6
+          key: ${{ job.container.image }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn
+      - name: Validate ESLint rules
+        run: yarn lint
+  prettier_validate:
+    name: Validate Prettier formatting
+    needs: install_dependencies
+    runs-on: ubuntu-latest
+    container: 'node:12.14.1-alpine'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: /usr/local/share/.cache/yarn/v6
+          key: ${{ job.container.image }}-node-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn
+      - name: Validate Prettier formatting
+        run: yarn prettier
