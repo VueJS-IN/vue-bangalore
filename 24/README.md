@@ -10,6 +10,9 @@ venue:
 townscript: vueblr-24
 photos:
   - https://secure.meetupstatic.com/photos/event/c/e/0/3/highres_489052739.jpeg
+  - https://secure.meetupstatic.com/photos/event/5/9/b/7/highres_489322967.jpeg
+  - https://secure.meetupstatic.com/photos/event/5/9/b/c/highres_489322972.jpeg
+  - https://secure.meetupstatic.com/photos/event/5/9/c/3/highres_489322979.jpeg
 agenda:
 - title: My transition from Vue to Svelte
   type: talk
@@ -21,6 +24,7 @@ agenda:
   description: Recently we're seeing much hype around GraphQL and its advantages over Vuex for easy state management. In this session, you'll learn how can you use GraphQL at client side for better state management & caching with traditional REST APIs. This can speed up development time and energy significantly.
   speaker: Tarun Mangukiya <@tarunmangukiya>
   bio: Co-founder & CTO of Iconscout. He likes to work with emerging technologies like JavaScript, GraphQL, Serverless, DevOps and more. He loves teaching, traveling & reading.
+  deck: https://www.canva.com/design/DAD0cdVfcX0/fm8F0Mxz4FnMDtuJkFGk4g/view?utm_content=DAD0cdVfcX0&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink
 organizers:
   - Nimit Bhargava <@NimitBhargava>
   - Ruphaa Ganesh <@ruphaaganesh>
